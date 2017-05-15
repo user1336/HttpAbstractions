@@ -26,7 +26,7 @@ namespace Microsoft.AspNetCore.Http.Internal
         {
             foreach (var segment in new HeaderSegmentCollection(values))
             {
-                if (segment.Data.HasValue)
+                if (segment.Data.HasValue && !string.IsNullOrWhiteSpace(segment.Data.Value))
                 {
                     yield return DeQuote(segment.Data.Value);
                 }
