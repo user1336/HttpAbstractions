@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Primitives;
 using Xunit;
 
@@ -15,7 +16,9 @@ namespace Microsoft.AspNetCore.Http
           new[] { "Value1", "Value2", "Value3", "Value4" },
           new[] { "Value1", "", "Value3", "Value4" },
           new[] { "Value1", "", "", "Value4" },
-          new[] { "", "", "", "" }
+          new[] { "Value1", "", " ", "Value4" },
+          new[] { "", "", "", "" },
+          new[] { "", " ", "", " " }
         };
 
         [Fact]
@@ -48,8 +51,9 @@ namespace Microsoft.AspNetCore.Http
                });
 
             var result = headers.GetCommaSeparatedValues("Header1");
+            var expectedResult = segments.Where(s => !string.IsNullOrWhiteSpace(s));
 
-            Assert.Equal(segments, result);
+            Assert.Equal(expectedResult, result);
         }
     }
 }
