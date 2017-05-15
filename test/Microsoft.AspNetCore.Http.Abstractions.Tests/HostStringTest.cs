@@ -70,7 +70,7 @@ namespace Microsoft.AspNetCore.Http
             var result = hostString.Port;
 
             // Assert
-            Assert.Equal(null, result);
+            Assert.Null(result);
         }
 
         [Theory]

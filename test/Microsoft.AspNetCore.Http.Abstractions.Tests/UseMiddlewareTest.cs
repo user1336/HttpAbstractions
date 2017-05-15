@@ -224,8 +224,8 @@ namespace Microsoft.AspNetCore.Http
             sp.AddService(typeof(IMiddlewareFactory), middlewareFactory);
             context.RequestServices = sp;
             await app(context);
-            Assert.Equal(true, context.Items["before"]);
-            Assert.Equal(true, context.Items["after"]);
+            Assert.True(context.Items["before"]);
+            Assert.True(context.Items["after"]);
             Assert.NotNull(middlewareFactory.Created);
             Assert.NotNull(middlewareFactory.Released);
             Assert.IsType(typeof(Middleware), middlewareFactory.Created);
